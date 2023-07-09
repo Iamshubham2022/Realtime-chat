@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realtime Chat App</title>
+    <script defer src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script defer src="js/client.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    
+    <nav>
+      
+      <div id="datetime" class="logo">
+        
+        <h1>Made by SJ</h1>
+      </div>
+      <h1>Welcome to The Chat App!!</h1>
+    </nav>
+   
+
+    <div class="container">
+    
+    </div>
+    
+    <div class="send">
+      <form action="#" id="send-container">
+        <input
+          type="text"
+          name="messageInp"
+          id="messageInp"
+          placeholder="Type your message here"
+        />
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+<script>
+  const currentDate = new Date();
+  const options = { day: 'numeric', month: 'short' };
+  const formattedDate = currentDate.toLocaleDateString('en-US', options);
+   const hours = currentDate.getHours();
+   const minutes = currentDate.getMinutes();
+   const amOrPm = hours >= 12 ? 'PM' : 'AM';
+   const formattedHours = hours % 12 || 12;
+   const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+   const formattedTime = formattedHours + ':' + formattedMinutes + ' ' + amOrPm;
+
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+  const day = days[currentDate.getDay()];
+  const currentDateTimeString = formattedTime + ', ' + day + ', ' + formattedDate  ;
+  const datetimeElement = document.getElementById("datetime");
+  datetimeElement.innerText = currentDateTimeString;
+</script>
+
+  </body>
+</html>
